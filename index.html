@@ -185,9 +185,19 @@ main section { padding-top: 88px; }
 .job h3 { font-size: 1.2rem; }
 .job .when { color: var(--accent); background: var(--accent-soft); padding: 2px 10px; border-radius: 999px; font-size: .88rem; font-weight: 700; white-space: nowrap; }
 .job .org { color: var(--muted); margin-top: 2px; }
-.job ul { margin-top: 12px; padding-left: 1.1em; }
-.job li { margin-top: 6px; }
-.job li::marker { color: var(--accent); }
+.job .gist { margin-top: 14px; font-size: 1.08rem; max-width: 62ch; }
+.stories { list-style: none; margin-top: 20px; display: grid; gap: 12px; }
+.story { display: grid; grid-template-columns: 1fr; gap: 10px; padding: 16px 18px; border-radius: 12px; background: var(--bg); border: 1px solid var(--line); }
+@media (min-width: 760px) { .story { grid-template-columns: 1fr 1.25fr 0.85fr; gap: 20px; align-items: start; } }
+.story > div { min-width: 0; }
+.story .lbl { display: block; font-size: .82rem; font-weight: 700; color: var(--muted); margin-bottom: 2px; }
+.story .problem p { color: var(--muted); }
+.story .did p { color: var(--ink); }
+.story .result .lbl { color: var(--accent); }
+.story .result p { font-family: "Bricolage Grotesque", sans-serif; font-weight: 700; font-size: 1.12rem; color: var(--accent); line-height: 1.3; }
+.story .result small { display: block; font-family: "Figtree", sans-serif; font-weight: 400; font-size: .88rem; color: var(--muted); margin-top: 2px; }
+.job .used { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 6px; list-style: none; }
+.job .used li { font-size: .82rem; padding: 3px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-weight: 700; }
 
 /* projects: card grid with illustrated headers */
 .projects { display: grid; gap: 22px; list-style: none; }
@@ -378,44 +388,96 @@ footer { margin: 40px 0 36px; padding-top: 20px; border-top: 1px solid var(--lin
     </section>
 
     <section id="experience" aria-labelledby="exp-h">
-      <div class="sec-head reveal"><h2 id="exp-h">Experience</h2></div>
+      <div class="sec-head reveal"><h2 id="exp-h">Experience</h2><p>The problems I was handed, what I did about them, and what changed.</p></div>
       <ol class="timeline" reversed>
         <li class="reveal">
           <div class="card job">
             <div class="job-top"><h3>Student Associate, Software Engineering</h3><span class="when">Sep 2026 to now</span></div>
             <p class="org">University of Cincinnati, Digital Technology Solutions</p>
-            <ul>
-              <li>Debug and test ASP.NET applications for College of Medicine admissions, course selection, and course lottery systems, tracing defects through application logs and SQL data.</li>
-              <li>Build SQL and Excel test datasets covering edge cases to validate form logic and lottery results before release.</li>
-              <li>Create Power BI dashboards that track usage and defect trends across 4 course lottery processes.</li>
+            <p class="gist">I test the web applications the College of Medicine runs for admissions, course selection, and its course lottery, so problems are caught before students hit them.</p>
+            <ul class="stories">
+              <li class="story">
+                <div class="problem"><span class="lbl">Problem</span><p>Lottery and form bugs depend on unusual inputs and are hard to reproduce by hand.</p></div>
+                <div class="did"><span class="lbl">What I did</span><p>Built SQL and Excel test datasets around the edge cases, and traced each defect through application logs and the database.</p></div>
+                <div class="result"><span class="lbl">Result</span><p>Form logic and lottery results checked before every release</p></div>
+              </li>
+              <li class="story">
+                <div class="problem"><span class="lbl">Problem</span><p>Usage and defects across 4 course lottery processes needed monitoring.</p></div>
+                <div class="did"><span class="lbl">What I did</span><p>Built Power BI dashboards that track usage and defect trends for each process.</p></div>
+                <div class="result"><span class="lbl">Result</span><p>Usage and defects for all 4 processes in one view</p></div>
+              </li>
+              <li class="story">
+                <div class="problem"><span class="lbl">Problem</span><p>Students needed guidance on each application form before submitting.</p></div>
+                <div class="did"><span class="lbl">What I did</span><p>Wrote technical guides that walk students through each application form before they submit.</p></div>
+                <div class="result"><span class="lbl">Result</span><p>A guide for every application form</p></div>
+              </li>
             </ul>
+            <ul class="used" aria-label="Tools used"><li>ASP.NET</li><li>SQL</li><li>Power BI</li><li>Excel</li></ul>
           </div>
         </li>
         <li class="reveal">
           <div class="card job">
             <div class="job-top"><h3>Software Engineer 1A, Full Stack Development</h3><span class="when">Jan 2026 to Jul 2026</span></div>
             <p class="org">Bank of America, Mumbai</p>
-            <ul>
-              <li>Built an LLM report generation tool on the bank's internal AI platform, cutting turnaround from 4 to 5 days to under 30 minutes.</li>
-              <li>Split 6+ ASP.NET MVC monoliths into Java Spring Boot microservices on OpenShift, removing 4 redundant service dependencies across 3 teams.</li>
-              <li>Migrated 3 web apps and 3 web services to .NET Core for cloud hosting, cutting deployment time 25%.</li>
-              <li>Tuned 100+ SQL queries and stored procedures per application, cutting DB2 retrieval time 30% with zero downtime.</li>
-              <li>Reviewed pull requests and wrote xUnit tests for .NET services, verifying AI generated code from GitHub Copilot before merge.</li>
-              <li>Resolved 1,500+ SonarQube and Checkmarx findings across 8 portfolios, reducing security vulnerabilities 40%.</li>
+            <p class="gist">My last stretch at the bank: bringing AI into advisors' daily work and breaking old applications into pieces that are easier to run and ship.</p>
+            <ul class="stories">
+              <li class="story">
+                <div class="problem"><span class="lbl">Problem</span><p>Advisors waited 4 to 5 days for client reports.</p></div>
+                <div class="did"><span class="lbl">What I did</span><p>Built an LLM report generation tool on the bank's internal AI platform, with a human review step before anything is released.</p></div>
+                <div class="result"><span class="lbl">Result</span><p>Under 30 minutes</p><small>for hundreds of advisors</small></div>
+              </li>
+              <li class="story">
+                <div class="problem"><span class="lbl">Problem</span><p>Large ASP.NET MVC monoliths carried redundant service dependencies across 3 teams.</p></div>
+                <div class="did"><span class="lbl">What I did</span><p>Split 6+ monoliths into Java Spring Boot microservices on OpenShift, and moved 3 web apps and 3 services to .NET Core for cloud hosting.</p></div>
+                <div class="result"><span class="lbl">Result</span><p>4 redundant dependencies removed</p><small>across 3 teams, with deployments 25% faster</small></div>
+              </li>
+              <li class="story">
+                <div class="problem"><span class="lbl">Problem</span><p>Data retrieval from DB2 was slow.</p></div>
+                <div class="did"><span class="lbl">What I did</span><p>Tuned 100+ SQL queries and stored procedures in each application.</p></div>
+                <div class="result"><span class="lbl">Result</span><p>30% faster data retrieval</p><small>with zero downtime</small></div>
+              </li>
+              <li class="story">
+                <div class="problem"><span class="lbl">Problem</span><p>A backlog of 1,500+ findings from SonarQube and Checkmarx across 8 portfolios.</p></div>
+                <div class="did"><span class="lbl">What I did</span><p>Worked through and resolved the findings, and reviewed pull requests with xUnit tests, including checking code GitHub Copilot generated before merge.</p></div>
+                <div class="result"><span class="lbl">Result</span><p>40% fewer security vulnerabilities</p></div>
+              </li>
             </ul>
+            <ul class="used" aria-label="Tools used"><li>C#</li><li>.NET Core</li><li>Java</li><li>Spring Boot</li><li>OpenShift</li><li>DB2</li><li>LLMs</li><li>xUnit</li></ul>
           </div>
         </li>
         <li class="reveal">
           <div class="card job">
             <div class="job-top"><h3>Software Engineer 1B, Full Stack Development</h3><span class="when">Jun 2021 to Dec 2025</span></div>
             <p class="org">Bank of America, Mumbai</p>
-            <ul>
-              <li>Converted 3 synchronous workflows to async REST APIs across 5 high traffic tools, cutting page load time 75%.</li>
-              <li>Automated 6 manual deployment steps with Jenkins CI/CD, moving 2 teams from monthly to weekly releases.</li>
-              <li>Implemented Content Security Policy and HTTPS across 6 production applications.</li>
-              <li>Replaced licensed ASPOSE with open source NPOI, saving $30,000 a year with zero report regressions.</li>
-              <li>Troubleshot on call production issues across 8 applications using logs and SQL, shipping fixes within 12 hours.</li>
+            <p class="gist">Four and a half years on tools for financial advisors: shipping features, automating releases, hardening security, and keeping production running.</p>
+            <ul class="stories">
+              <li class="story">
+                <div class="problem"><span class="lbl">Problem</span><p>Releases went out monthly, held back by 6 manual deployment steps.</p></div>
+                <div class="did"><span class="lbl">What I did</span><p>Automated those steps in a Jenkins CI/CD pipeline.</p></div>
+                <div class="result"><span class="lbl">Result</span><p>Weekly releases</p><small>for 2 teams</small></div>
+              </li>
+              <li class="story">
+                <div class="problem"><span class="lbl">Problem</span><p>Three workflows across 5 high traffic tools ran synchronously, slowing pages down.</p></div>
+                <div class="did"><span class="lbl">What I did</span><p>Converted 3 workflows to asynchronous REST APIs.</p></div>
+                <div class="result"><span class="lbl">Result</span><p>75% faster page loads</p></div>
+              </li>
+              <li class="story">
+                <div class="problem"><span class="lbl">Problem</span><p>Vulnerability exposure across 6 production applications was over 80%.</p></div>
+                <div class="did"><span class="lbl">What I did</span><p>Rolled out Content Security Policy and HTTPS across all six.</p></div>
+                <div class="result"><span class="lbl">Result</span><p>Exposure under 5%</p></div>
+              </li>
+              <li class="story">
+                <div class="problem"><span class="lbl">Problem</span><p>Report generation depended on ASPOSE, a paid licence.</p></div>
+                <div class="did"><span class="lbl">What I did</span><p>Replaced it with the open source NPOI library in 2 sprints.</p></div>
+                <div class="result"><span class="lbl">Result</span><p>$30,000 a year saved</p><small>with zero report regressions</small></div>
+              </li>
+              <li class="story">
+                <div class="problem"><span class="lbl">Problem</span><p>Production incidents across 8 applications needed fast answers while on call.</p></div>
+                <div class="did"><span class="lbl">What I did</span><p>Traced issues through logs and SQL and shipped fixes.</p></div>
+                <div class="result"><span class="lbl">Result</span><p>Fixes within 12 hours</p></div>
+              </li>
             </ul>
+            <ul class="used" aria-label="Tools used"><li>C#</li><li>ASP.NET</li><li>Jenkins</li><li>REST APIs</li><li>SQL</li><li>Content Security Policy</li></ul>
           </div>
         </li>
       </ol>
